@@ -6,14 +6,17 @@ import pandas as pd
 import streamlit as st
 import altair as alt
 from PIL import Image
+import requests
+from io import BytesIO
+
 
 ######################
 # Page Title
 ######################
 
-image = Image.open('dna-logo.jpg')
-
-st.image(image, use_column_width=True)
+response = requests.get('https://github.com/paulowiz/streamlit_freecodecamp/blob/main/app_2_simple_bioinformatics_dna/dna-logo.jpg?raw=true')
+img = Image.open(BytesIO(response.content))
+st.image(img, use_column_width=True)
 
 st.write("""
 # DNA Nucleotide Count Web App
